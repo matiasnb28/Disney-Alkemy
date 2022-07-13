@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.disney.entities.GeneroEntity;
 import com.disney.entities.PersonajeEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,5 +18,9 @@ public class PeliculaDTO {
     private String titulo;
     private String fechaCreacion;
     private String calificacion;
-    private List<PersonajeEntity> personajes = new ArrayList();
+
+    private List<PersonajeEntity> personajes;
+
+    private GeneroEntity genero;
+
 }
