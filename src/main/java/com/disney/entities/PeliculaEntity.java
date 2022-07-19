@@ -34,7 +34,7 @@ public class PeliculaEntity {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "fecha_creacion")
     private Date fechaCreacion;
-    private String calificacion; //Del 1 al 5
+    private Integer calificacion; //Del 1 al 5
     
     @ManyToMany(                                                                                            //Esto quiere decir que la película va a ser el objeto que se haga cargo, es el "objeto mayor"
                     cascade = {                                                                             //Cuando creo una película, creo los personajes y no cuando creo los personajes, creo la película

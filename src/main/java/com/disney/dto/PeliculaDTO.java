@@ -17,7 +17,7 @@ public class PeliculaDTO {
     private String imagen;
     private String titulo;
     private String fechaCreacion;
-    private String calificacion;
+    private Integer calificacion;
 
     private List<PersonajeEntity> personajes;
 

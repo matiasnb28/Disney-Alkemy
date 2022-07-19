@@ -18,26 +18,26 @@ import java.util.List;
 @Component
 public class PersonajeSpecification {
 
-    public Specification<PersonajeEntity> getByFilters(PersonajeFiltersDTO filtersDTO) {
+    public Specification<PersonajeEntity> getByFilters(String nombre, Integer edad, List<String> peliculas) {
         return (root, query, criteriaBuilder) -> {
 
             List<Predicate> predicates = new ArrayList();
 
-            if (StringUtils.hasLength(filtersDTO.getNombre())) {
+            if (StringUtils.hasLength(nombre)) {
                 predicates.add(
                         criteriaBuilder.like(
                                 criteriaBuilder.lower(root.get("nombre")),
-                                "%" + filtersDTO.getNombre().toLowerCase() + "%"
+                                "%" + nombre.toLowerCase() + "%"
                         )
                 );
             }
-            if (filtersDTO.getEdad() != null){
-                predicates.add(criteriaBuilder.equal(root.get("age"), filtersDTO.getEdad()));
+            if (edad != null){
+                predicates.add(criteriaBuilder.equal(root.get("edad"), edad));
             }
-            if (!CollectionUtils.isEmpty(filtersDTO.getPeliculas())) {
+            if (!CollectionUtils.isEmpty(peliculas)) {
                 Join<PeliculaEntity, PersonajeEntity> join = root.join("peliculas", JoinType.INNER);
                 Expression<String> peliculasId = join.get("id");
-                predicates.add(peliculasId.in(filtersDTO.getPeliculas()));
+                predicates.add(peliculasId.in(peliculas));
             }
 
             //remove duplicates
